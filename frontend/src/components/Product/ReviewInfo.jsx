@@ -3,7 +3,7 @@ import { faker } from "@faker-js/faker";
 import batman from "../../assets/images/batman.jpg";
 import { AiFillDislike, AiFillLike, AiFillLock } from "react-icons/ai";
 
-function ReviewInfo() {
+function ReviewInfo({}) {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
 

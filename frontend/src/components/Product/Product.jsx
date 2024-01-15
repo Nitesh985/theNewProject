@@ -13,18 +13,18 @@ function ProductPreview() {
 
     const {productId} = useParams()
     
-    // useEffect(()=>{
-    //   setLoading(true)
-    //   axios.get(`/api/v1/products/get-product/${productId}`)
-    //   .then((response)=>{
-    //     setLoading(false)
-    //     setProduct(response?.data?.data)
-    //   })
-    //   .catch(error=>{
-    //     setLoading(false)
-    //     console.log(error)
-    //   })
-    // }, [])
+    useEffect(()=>{
+      setLoading(true)
+      axios.get(`/api/v1/products/get-product/${productId}`)
+      .then((response)=>{
+        setLoading(false)
+        setProduct(response?.data?.data)
+      })
+      .catch(error=>{
+        setLoading(false)
+        console.log(error)
+      })
+    }, [])
 
 
     const reviewInfo = {

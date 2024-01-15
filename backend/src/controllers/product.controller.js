@@ -144,7 +144,12 @@ const getReviews = asyncHandler(async (req, res) => {
                 from: "reviews",
                 localField: "_id",
                 foreignField: "productId",
-                as: "reviewers"
+                as: "reviewers",
+                pipeline:[
+                    {
+                        from:""
+                    }
+                ]
             }
         },
         {
@@ -163,7 +168,7 @@ const getReviews = asyncHandler(async (req, res) => {
     return res
     .status(200)
     .json(
-        new ApiResponse(200, reviewDetails[0], "The review details were gotten succesfully")
+        new ApiResponse(200, reviewDetails[0].reviewers, "The review details were gotten succesfully")
     )
 
 })
