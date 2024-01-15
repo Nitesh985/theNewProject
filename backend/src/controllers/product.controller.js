@@ -147,7 +147,8 @@ const getReviews = asyncHandler(async (req, res) => {
                 as: "reviewers",
                 pipeline:[
                     {
-                        from:""
+                        from:"customers",
+                        local
                     }
                 ]
             }
