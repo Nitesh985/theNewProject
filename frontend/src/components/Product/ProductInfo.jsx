@@ -5,21 +5,7 @@ import Carousel from "../../utils/Carousel";
 
 function ProductInfo({ _id, name, description, images, price, category }) {
   const { addToCart } = useCart();
-  // category: {_id: '659d4b0395a5601e20c4d02e',
-  // name: 'Books & Literature',
-  // description: 'Immerse yourself in captivating stories and enriching knowledge.',
-  // createdAt: '2024-01-09T13:32:51.825Z',
-  // updatedAt: '2024-01-09T13:32:51.825Z',
-  //  …}categoryId: "659d4b0395a5601e20c4d02e"
-  // createdAt: "2024-01-09T14:16:57.893Z"
-  // description: "This is really awesome book"
-  // images: [{…}]
-  // name: "The song of ice and fire"
-  // price: "$4.99"
-  // updatedAt: "2024-01-09T14:16:57.893Z"
-  // __v: 0
-  // _id: "659d55594d57012b1a57c029"
-  // [[Prototype]]: Object
+  
   const [design, setDesign] = useState(true);
 
   const myDescription = `A Song of Ice and Fire" is a series of epic fantasy novels written by American author George R.R. Martin. The series is widely known for its intricate characters, political intrigue, and expansive world-building. As of my knowledge cutoff in January 2022, the series consists of five published novels, with two more planned.
