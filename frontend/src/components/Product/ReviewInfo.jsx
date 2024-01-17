@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { faker } from "@faker-js/faker";
-import batman from "../../assets/images/batman.jpg";
 import { AiFillDislike, AiFillLike, AiFillLock } from "react-icons/ai";
 
 function ReviewInfo({ stars, comment, reviewer }) {
