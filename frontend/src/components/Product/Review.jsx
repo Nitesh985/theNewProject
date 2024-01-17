@@ -29,7 +29,7 @@ function Review() {
         Reviews
       </div>
       {reviews && reviews.map((reviewData)=>(
-        <ReviewInfo {...reviewData} />
+        <ReviewInfo key={reviewData._id} {...reviewData} />
       ))}
     </div>
   );
