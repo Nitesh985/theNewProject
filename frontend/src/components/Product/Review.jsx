@@ -28,8 +28,8 @@ function Review() {
       <div className="text-[#FF9800] text-center font-rubik text-5xl mt-2">
         Reviews
       </div>
-      {reviews && reviews.map(()=>(
-        <ReviewInfo {...reviews} />
+      {reviews && reviews.map((reviewData)=>(
+        <ReviewInfo {...reviewData} />
       ))}
     </div>
   );
