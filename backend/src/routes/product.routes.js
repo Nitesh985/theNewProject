@@ -11,6 +11,6 @@ uploadProduct)
 
 router.route('/get-reviews/:productId').get(getReviews)
 
-router.route('/get-reviews-by-stars/:productId).get(getReviewsByStars)
+router.route('/get-reviews-by-stars/:productId').get(getReviewsByStars)
 
 export default router
