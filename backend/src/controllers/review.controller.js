@@ -30,24 +30,9 @@ const uploadReview = asyncHandler(async (req, res)=>{
 })
 
 
-const getReviewsByStars = asyncHandler(async (req, res)=>{
-    const {stars} = req.body
-    
-    if (!stars){
-        throw new ApiError(401, "The stars not found")
-    }
-    
-    const reviews = await Review.find({stars})
-    
-    return res.status(200)
-        .json(
-            new ApiResponse(200, reviews, "The reviews were fetched successfully!")
-        )
-})
 
 export {
-  uploadReview,
-  getReviewsByStars
+  uploadReview
 }
 
 
