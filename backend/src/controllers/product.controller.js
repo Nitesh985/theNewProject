@@ -68,6 +68,30 @@ const getProduct = asyncHandler(async (req, res) => {
   });
 });
 
+const getProductsByCategory = asyncHandler(async(req, res)=>{
+    const { categoryId } = req.params
+
+    if (!categoryId){
+        throw new ApiError(400, "The category is not given")
+    }
+
+    const products = await Product.find({
+        categoryId
+    })
+
+    if (!products){
+        throw new ApiError(501, "Couldn't find any products of that category")
+    }
+
+    return res
+        .status(200)
+        .json(
+            new ApiResponse(200, "The products are fetched successfully")
+        )
+})
+
+
+
 const uploadProduct = asyncHandler(async (req, res) => {
   const { name, description, price, categoryName } = req.body;
 
