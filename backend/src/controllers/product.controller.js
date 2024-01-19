@@ -192,4 +192,86 @@ const getReviews = asyncHandler(async (req, res) => {
     );
 });
 
+const getReviewsByStars = asyncHandler(async (req, res)=>{
+    const { productId } = req.params
+    const { stars } = req.body
+
+    const reviewData = await Product.aggregrate([
+        {
+            $match:{
+                _id:mongoose.Types.ObjectId(productId)
+            }
+        },
+        {
+            $lookup:{
+                from:"reviews",
+                localField:"_id",
+                foreignField:"productId",
+                as:"reviewers",
+                pipeline:[
+                    {
+                        $lookup:{
+                            from:"customers",
+                            localField:"_id",
+                            foreignField: "customerId",
+                            as:"reviewer",
+                            pipeline:[
+                                {
+                                    $project:{
+                                        username:1,
+                                        avatar:1
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        $addFields:{
+                            reviewer:{
+                                $first:"$reviewer"
+                            }
+                        }
+                    },
+                    {
+                        $cond:{
+                            if: {stars},
+                            then: {
+                                $project:{
+                                    productId:0,
+                                    userId:0,
+                                    stars:0,
+                                    comment:0
+                                }
+
+                            },
+                            else: {
+                                $project:{
+                                   productId:1,
+                                   userId:1,
+                                   stars:1,
+                                   comment:1
+                                }
+                            }
+
+                        }
+                    }
+
+                ]
+            }
+
+        }
+    ])
+
+    if (!reviewData.length){
+        throw new ApiError(401, "Not valid product id")
+    }
+    
+    return res
+        .status(200)
+        .json(
+            new ApiResponse(200, reviewData[0].reviewers, "The reviews fetched successfully!")
+        )
+
+})
+
 export { getAllProducts, getProduct, uploadProduct, getReviews };
