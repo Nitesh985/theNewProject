@@ -175,6 +175,12 @@ const getReviews = asyncHandler(async (req, res) => {
         },
       },
     },
+    {
+      $project:{
+        reviewers:1,
+        reviewCount:1,
+      }
+    }
   ]);
 
   if (!reviewDetails.length) {
@@ -186,7 +192,7 @@ const getReviews = asyncHandler(async (req, res) => {
     .json(
       new ApiResponse(
         200,
-        reviewDetails[0].reviewers,
+        reviewDetails[0],
         "The review details were gotten succesfully"
       )
     );
