@@ -1,4 +1,4 @@
-import { getAllProducts, getProduct, getReviews, uploadProduct } from "../controllers/product.controller.js";
+import { getAllProducts, getProduct, getReviews, getReviewsByStars, uploadProduct } from "../controllers/product.controller.js";
 import { Router} from "express";
 import { upload } from "../middlewares/multer.middlewares.js";
 
@@ -11,5 +11,6 @@ uploadProduct)
 
 router.route('/get-reviews/:productId').get(getReviews)
 
+router.route('/get-reviews-by-stars/:productId).get(getReviewsByStars)
 
 export default router
