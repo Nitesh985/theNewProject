@@ -11,7 +11,7 @@ const reviewSchema = new Schema({
         ref: "Customer"
     },
     stars:{
-        type: String,
+        type: Number,
         required: true
     },
     comment:{
