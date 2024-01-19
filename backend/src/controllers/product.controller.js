@@ -304,4 +304,4 @@ const getReviewsByStars = asyncHandler(async (req, res)=>{
 
 })
 
-export { getAllProducts, getProduct, uploadProduct, getReviews };
+export { getAllProducts, getProduct, uploadProduct, getReviews, getReviewsByStars };
