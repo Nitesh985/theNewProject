@@ -13,10 +13,11 @@ function ReviewInfo({ stars, comment, reviewer }) {
   const { catchPhraseDescriptor } = faker.company;
   const { paragraphs } = faker.lorem;
   const { time } = faker.date;
-
+// TODO: put an image alternative to the avatar
+  
   return (
     <div className="flex p-3 mt-3">
-// TODO: put an image alternative to the avatar
+
       <img src={reviewer?.avatar?.url} alt={reviewer?.username} className="rounded-full w-10 h-10" />
 
       <div className="ml-2">
