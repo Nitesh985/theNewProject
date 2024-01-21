@@ -27,9 +27,6 @@ function ProductPreview() {
     }, [])
 
 
-    const reviewInfo = {
-
-    }
     
 
     return (
