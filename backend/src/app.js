@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser'
 import userRouter from './routes/user.routes.js'
 import productRouter from './routes/product.routes.js'
 import reviewRouter from './routes/review.routes.js'
-import categoryRouter from '.routes/category.routes.js'
+import categoryRouter from './routes/category.routes.js'
 
 
 

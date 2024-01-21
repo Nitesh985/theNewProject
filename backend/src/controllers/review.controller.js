@@ -1,6 +1,8 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
+import { Review } from '../models/review.models.js' 
+
 
 const uploadReview = asyncHandler(async (req, res)=>{
     const { productId } = req.params
@@ -10,6 +12,11 @@ const uploadReview = asyncHandler(async (req, res)=>{
     if (!stars || !comment){
         throw new ApiError(401, "Stars or comment field is missing")
     }
+
+    console.log(productId)
+    console.log(stars)
+    console.log(comment)
+    console.log(customerId)
 
     const review = await Review.create({
         productId,

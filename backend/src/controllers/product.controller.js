@@ -94,6 +94,10 @@ const getProductsByCategory = asyncHandler(async(req, res)=>{
 
 const uploadProduct = asyncHandler(async (req, res) => {
   const { name, description, price, categoryName } = req.body;
+  console.log(req.body)
+  console.log(name)
+  console.log(description)
+  console.log(price)
 
   const reqFields = ["name", "price", "categoryName"];
 
@@ -101,7 +105,7 @@ const uploadProduct = asyncHandler(async (req, res) => {
     if (!req.body[field]) {
       throw new ApiError(
         401,
-        field[0].toUpperCase() + field.slice(1) + " field is a required field"
+        ((field[0].toUpperCase() + field.slice(1)) + " field is a required field")
       );
     }
   });
