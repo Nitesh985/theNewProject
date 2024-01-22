@@ -79,14 +79,25 @@ const getProductsByCategory = asyncHandler(async(req, res)=>{
         categoryId
     })
 
-    if (!products){
+    const categoryExists = await Category.findById(categoryId)
+
+
+    if (!products && !categoryExists){
         throw new ApiError(501, "Couldn't find any products of that category")
+    }
+
+    if (categoryExists && !products){
+      return res
+      .status(204)
+      .json(
+        new ApiResponse(204, [], "There are not products by that category")
+      )
     }
 
     return res
         .status(200)
         .json(
-            new ApiResponse(200, "The products are fetched successfully")
+            new ApiResponse(200, products, "The products are fetched successfully")
         )
 })
 
@@ -308,4 +319,4 @@ const getReviewsByStars = asyncHandler(async (req, res)=>{
 
 })
 
-export { getAllProducts, getProduct, uploadProduct, getReviews, getReviewsByStars };
+export { getAllProducts, getProduct, getProductsByCategory, uploadProduct, getReviews, getReviewsByStars };

@@ -23,13 +23,16 @@ import {
 import { ProductPreview, Protected } from "./components/index.js";
 import { UserProvider } from "./context/UserContext.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
+import Category from "./components/Category/Category.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<Layout />}>
         <Route path="" element={<Home />} />
-        <Route path="product/" element={<Product />}></Route>
+        <Route path="product/" element={<Product />}>
+          <Route path="c/:categoryId" />
+        </Route>
         <Route path="product/p/:productId" element={<ProductPreview />} />
         <Route
           path="contact"

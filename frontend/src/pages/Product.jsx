@@ -1,36 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../utils/Loader";
 import useCart from "../context/CartContext";
-import { Link } from "react-router-dom";
-import { BsBookmarkStar } from "react-icons/bs";
+import { Link, useParams } from "react-router-dom";
+import Category from "../components/Category/Category";
+
+
 
 function Product() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
+  const {categoryId} = useParams()
 
   const { cart, addToCart } = useCart();
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get("/api/v1/products/get-all-products")
+      .get(`/api/v1/products/get-products/${categoryId?categoryId:""}`)
       .then((response) => {
-        setData(response.data.data);
+        setData(response?.data?.data);
         setLoading(false);
       })
       .catch((error) => {
         setLoading(false)
         console.log(error);
       });
-  }, []);
+  }, [categoryId]);
+
+  
+  
 
   return (
     <Loader loading={loading}>
+      <div>
+        <Category />
+      </div>
       <div className="flex flex-wrap p-10 gap-10 justify-center">
-        {data &&
-          data.map((product, index) => (
+        {(Array.isArray(data) && data?.length)?
+          data?.map((product, index) => (
               <div
                 key={index}
                 className="card w-[300px] mt-4 hover:border hover:border-blue-500 bg-base-100 shadow-xl"
@@ -66,7 +74,7 @@ function Product() {
                   </div>
                 </div>
               </div>
-          ))}
+          )):<div>Nothing in the store</div>}
       </div>
       
       <div className="join">

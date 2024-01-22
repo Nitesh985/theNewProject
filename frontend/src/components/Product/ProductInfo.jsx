@@ -5,7 +5,6 @@ import Carousel from "../../utils/Carousel";
 
 function ProductInfo({ _id, name, description, images, price, category }) {
   const { addToCart } = useCart();
-  
 
 
   return (
@@ -15,7 +14,7 @@ function ProductInfo({ _id, name, description, images, price, category }) {
           <Carousel images={images} />
         )}
         <h1 className=" font-bold text-2xl text-center">{name}</h1>
-        <Link to={`/category/${category?._id}`} className="hover:underline">
+        <Link to={`/product/c/${category?._id}`} className="hover:underline">
           <p className="text-center">{category?.name}</p>
         </Link>
         <div className="flex justify-center">
