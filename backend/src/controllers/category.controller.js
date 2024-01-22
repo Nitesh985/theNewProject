@@ -1,6 +1,7 @@
 import { asyncHandler } from "../utils/asyncHandler.js"
 import { ApiError } from "../utils/ApiError.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
+import { Category } from "../models/category.models.js"
 
 
 const getAllCategories = asyncHandler(async (req, res)=>{
