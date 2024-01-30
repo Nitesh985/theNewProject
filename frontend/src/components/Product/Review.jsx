@@ -2,17 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'
 import ReviewInfo from "./ReviewInfo";
 import axios from 'axios'
-import CreateReview from "./CreateReview";
+import CreateReview from './CreateReview'
 
  
 function Review() {
   const { productId } = useParams()
   const [reviews, setReviews] = useState(null)
-
+  const [reviewData, setReviewData] = useState({
+    stars: 5,
+    comment:"",
+  });
 
   useEffect(()=>{
     axios
-    .get(`http://localhost:3000/api/v1/products/get-reviews/${productId}`)
+    .get(`/api/v1/products/get-reviews/${productId}`)
     .then((res)=>{
       setReviews(res?.data?.data?.reviewers)
     })
@@ -20,19 +23,19 @@ function Review() {
       console.log(error)
     })
 
-  }, [])
-  
-  console.log("Reviews::", reviews)
+  }, [reviewData])
 
   return (
     <div>
-      <div className="text-[#FF9800] text-center font-bold text-4xl mt-2">
+      <div className="text-[#FF9800] text-center font-bold text-4xl mt-6">
         Reviews
       </div>
-      <CreateReview />
-      {reviews && reviews.map((reviewData)=>(
-        <ReviewInfo key={reviewData._id} {...reviewData} />
-      ))}
+      <CreateReview reviewData={reviewData} setReviewData={setReviewData}  />
+      <div className="mt-5" >
+        {reviews && reviews.map((reviewData)=>(
+          <ReviewInfo key={reviewData._id} {...reviewData} />
+        ))}
+      </div>
     </div>
   );
 }

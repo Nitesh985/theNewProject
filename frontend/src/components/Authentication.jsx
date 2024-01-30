@@ -9,7 +9,7 @@ function Protected({ children, authentication = true }) {
   const [loader, setLoader] = useState(true);
   useEffect(() => {
     if (authentication && authStatus !== authentication) {
-      navigate("/sign-up");
+      navigate("/sign-in");
     } else if (!authentication && authStatus !== authentication) {
       navigate("/");
     }

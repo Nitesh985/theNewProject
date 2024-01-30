@@ -5,23 +5,28 @@ import { asyncHandler } from "../utils/asyncHandler.js"
 
 
 const verifyUser = asyncHandler(async (req, res, next) => {
-    const accessToken = req?.cookies?.accessToken || req.headers.authorization
+
+    const accessToken = req?.cookies?.accessToken || req?.header("authorization")?.split(" ")[1]
+
 
     if (!accessToken){
         throw new ApiError(401, "The user is not authenticated")
     }
     
-    const decoded = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+    let userId
 
- 
-    if (!decoded){
-        throw new ApiError(500, "Something went wrong getting user data")
-    }
+    jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, data)=>{
+        if (err){
+            throw new ApiError(401, err?.message || "The token is invalid or has expired")
+        }
+        userId = data?._id
+    })  
 
-    const user = await Customer.findById(decoded._id)
+
+    const user = await Customer.findById(userId)
 
     if (!user){
-        throw new ApiError(400, "Bad request :: The user is not authenticated for that action")
+        throw new ApiError(404, "The user by that id is not found")
     }
 
     req.user = user

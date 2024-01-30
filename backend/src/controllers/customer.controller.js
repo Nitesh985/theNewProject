@@ -3,11 +3,12 @@ import { uploadToCloudinary } from "../utils/cloudinary.js"
 import { ApiError } from '../utils/ApiError.js'
 import { ApiResponse } from '../utils/ApiResponse.js'
 import { asyncHandler } from '../utils/asyncHandler.js'
+import jwt from 'jsonwebtoken'
 
 
 
 const registerUser = asyncHandler (async (req, res) => {
-    const reqFields = ["email", "username", "password", "contact", "address", "country"]
+    const reqFields = ["email", "username", "password", "contact", "address"]
 
     const {username, email, password, contact, address, country} = req.body
 
@@ -34,14 +35,16 @@ const registerUser = asyncHandler (async (req, res) => {
         throw new ApiError(500, "Something went wrong uploading the file")
     }
 
+
+
     const user = await Customer.create({
         email,
         password,
         username,
         contact,
         address,
-        country,
-        avatar
+        avatar,
+        country
     })
 
     const userData = await Customer.findById(user._id).select("-password")
@@ -53,7 +56,7 @@ const registerUser = asyncHandler (async (req, res) => {
 
     return res.status(200)
     .json(
-        new ApiResponse(200, user, "The user registered sucessfully")
+        new ApiResponse(200, userData, "The user registered sucessfully")
     )
 })
 
@@ -98,7 +101,6 @@ const loginUser = asyncHandler(async (req, res) => {
 
 const logoutUser = asyncHandler(async (req, res) => {
     try {
-        console.log(req.user)
         
         const user = await Customer.findByIdAndUpdate(req.user?._id, {
             $set:{
@@ -130,6 +132,49 @@ const logoutUser = asyncHandler(async (req, res) => {
 })
 
 
+const refreshAccessToken = asyncHandler(async (req, res)=> {
+    const prevRefreshToken = req?.cookies?.refreshToken || req?.header("authorization")?.split(" ")[1]
+    if (!prevRefreshToken){
+        throw new ApiError(403, "Your session has expired, please log back in")
+    }
+
+    let userId;
+    jwt.verify(prevRefreshToken, process.env.REFRESH_TOKEN_SECRET, (err, data)=>{
+        if (err){
+            throw new ApiError(403, err.message || "The token must have expired")
+        }
+        userId = data?._id
+    })
 
 
-export {registerUser, loginUser, logoutUser}
+    const user = await Customer.findById(userId)
+
+    if (!user){
+        throw new ApiError(401, "Bad request, the user by that id doesn't exists")
+    }
+
+    if (user.refreshToken !== prevRefreshToken){
+        throw new ApiError(403, "Your session has expired, please log back in")
+    }
+
+    const accessToken = user.generateAccessToken()
+
+    const options = {
+        httpOnly: true,
+        secure: true
+    }
+
+    return res
+        .status(200)
+        .cookie("accessToken", accessToken, options)
+        .json(
+            new ApiResponse(200, {}, "The access token was generated successfully")
+        )
+
+
+    
+})
+
+
+
+export {registerUser, loginUser, logoutUser, refreshAccessToken}

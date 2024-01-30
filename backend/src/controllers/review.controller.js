@@ -13,10 +13,6 @@ const uploadReview = asyncHandler(async (req, res)=>{
         throw new ApiError(401, "Stars or comment field is missing")
     }
 
-    console.log(productId)
-    console.log(stars)
-    console.log(comment)
-    console.log(customerId)
 
     const review = await Review.create({
         productId,

@@ -15,7 +15,7 @@ function Drawer({ children }) {
 
   return (
     <DrawerContext.Provider value={openDrawer}>
-      <div className="drawer drawer-end">
+      <div className="drawer drawer-end" >
         <input
           id="my-drawer-4"
           className="drawer-toggle"

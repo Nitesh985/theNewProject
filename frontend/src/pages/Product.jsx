@@ -12,7 +12,7 @@ function Product() {
   const [loading, setLoading] = useState(false);
   const {categoryId} = useParams()
 
-  const { cart, addToCart } = useCart();
+  const { addToCart } = useCart();
 
   useEffect(() => {
     setLoading(true);
@@ -20,11 +20,12 @@ function Product() {
       .get(`/api/v1/products/get-products/${categoryId?categoryId:""}`)
       .then((response) => {
         setData(response?.data?.data);
-        setLoading(false);
       })
       .catch((error) => {
-        setLoading(false)
         console.log(error);
+      })
+      .finally(()=>{
+        setLoading(false)
       });
   }, [categoryId]);
 

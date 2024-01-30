@@ -19,8 +19,6 @@ function Category() {
             console.log(error)
         })
     }, [])
-
-
        
     
     const handleChange = (event) => {
@@ -30,14 +28,13 @@ function Category() {
             navigate(`/product`)
         } else {
             navigate(`/product/c/${value}`)
-        }
-        
+        }        
     }
 
 
   return (
     <div>
-        <select value={categoryName} onChange={handleChange} >
+        <select value={categoryName} onChange={handleChange} className='select' >
             <option disabled>Select the categories</option>
             <option value="All" >All</option>
             {categories && categories?.map(category=>(

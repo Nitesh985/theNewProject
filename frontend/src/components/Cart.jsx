@@ -5,17 +5,13 @@ import useCart from "../context/CartContext";
 function Cart() {
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const { cart, updateCart } = useCart();
-
-  
+  const { cart } = useCart([]);
 
   useEffect(()=>{
     setTotalPrice(()=>{
         let sumOfPrice = 0;
         cart?.forEach(cartItem=>{
             const {quantity, price} = cartItem
-            console.log(quantity)
-            console.log(price)
             
             sumOfPrice += quantity * parseFloat(price.replace(/[^0-9.]/g, ""))
         })
@@ -29,7 +25,7 @@ function Cart() {
       <div className="font-bold text-2xl flex justify-between">
         <div className="invisible">cart</div>
         <div>Cart</div>
-        <div className="text-green-500" >{"$" + totalPrice}</div>
+        <div className="text-green-500 text-[20px] mt-[2px] flex items-center" >{"$" + totalPrice}</div>
       </div>
       {cart.length ? (
         <div>

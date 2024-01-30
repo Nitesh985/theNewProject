@@ -105,10 +105,6 @@ const getProductsByCategory = asyncHandler(async(req, res)=>{
 
 const uploadProduct = asyncHandler(async (req, res) => {
   const { name, description, price, categoryName } = req.body;
-  console.log(req.body)
-  console.log(name)
-  console.log(description)
-  console.log(price)
 
   const reqFields = ["name", "price", "categoryName"];
 
@@ -149,7 +145,7 @@ const uploadProduct = asyncHandler(async (req, res) => {
     description: description || "",
     price,
     categoryId: category._id,
-    images,
+    images
   });
 
   if (!product) {

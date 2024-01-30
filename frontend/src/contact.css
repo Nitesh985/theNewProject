@@ -1,7 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-body {
+.contact-body {
     font-family:Arial, Helvetica, ;
     margin: 0;
     padding: 0;
@@ -13,26 +10,26 @@ body {
     height:100vh;
 }
 
-h1 {
+.contact-h1 {
     text-align: center;
     margin-top: 20px;
     color: #333;
     font-size: 1.4em;
 }
 
-.container {
+.contact-container {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
 
-.info{
+.contact-info{
     font-size: 1.5em;
     margin-top: 20px;
  
  
 }
-.inputbox{
+.conact-inputbox{
     
     padding:30px 30px 30px 20px;
     margin-top: 20px;
@@ -43,7 +40,7 @@ h1 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
     border: rgb(58, 87, 88) 1px solid;
 }
-input{
+.contact-input{
    width: 100%;
     padding: 15px;
     margin-bottom: 15px;
@@ -55,7 +52,7 @@ input{
 }
 
 
-h5 {
+.contact-h5 {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -63,25 +60,24 @@ h5 {
     color:rgb(241, 241, 241);
 }
 
-h6 {
+.contact-h6 {
     margin: 0;
     color: white;
 }
-h1{
+.contact-h1{
     color: white;
 }
 
-svg {
+.contact-svg {
     width: 20px;
     height: 20px;
 }
-.info,
-.inputbox {
+.contact-info,
+.contact-inputbox {
     width: 25%;
     padding-right:100px;
 }
-button {
-    
+.contact-button {   
     background: rgba(255, 255, 255, 0.7);
     border:none;
     border-radius: 5px;

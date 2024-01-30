@@ -23,7 +23,6 @@ import {
 import { ProductPreview, Protected } from "./components/index.js";
 import { UserProvider } from "./context/UserContext.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
-import Category from "./components/Category/Category.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,22 +33,8 @@ const router = createBrowserRouter(
           <Route path="c/:categoryId" />
         </Route>
         <Route path="product/p/:productId" element={<ProductPreview />} />
-        <Route
-          path="contact"
-          element={
-            <Protected authentication={true}>
-              <Contact />
-            </Protected>
-          }
-        />
-        <Route
-          path="services"
-          element={
-            <Protected authentication={true}>
-              <Services />
-            </Protected>
-          }
-        />
+        <Route path="contact" element={<Contact />} />
+        <Route path="services" element={<Services />} />
       </Route>
       <Route
         path="sign-up"

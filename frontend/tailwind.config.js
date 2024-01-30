@@ -12,5 +12,8 @@ export default {
       }
     },
   },
+  daisyui:{
+    themes:["forest", "light", "dark"]
+  },
   plugins: [require("daisyui")],
 }

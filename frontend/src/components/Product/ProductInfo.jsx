@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import useCart from "../../context/CartContext";
 import Carousel from "../../utils/Carousel";
 
+
+
 function ProductInfo({ _id, name, description, images, price, category }) {
   const { addToCart } = useCart();
-
 
   return (
     <>
       <div className={`flex flex-col gap-3`}>
-        {images?.length && (
+        {images?.length>0 && (
           <Carousel images={images} />
         )}
         <h1 className=" font-bold text-2xl text-center">{name}</h1>
@@ -18,13 +19,13 @@ function ProductInfo({ _id, name, description, images, price, category }) {
           <p className="text-center">{category?.name}</p>
         </Link>
         <div className="flex justify-center">
-          <div className="flex w-[600px] justify-between">
+          <div className="flex w-[600px] justify-between items-center">
             <div className="text-center flex gap-2">
               <h1 className="font-bold">Price: </h1>
               <span className="text-green-400">{price}</span>
             </div>
             <button
-              className="bg-yellow-400 hover:bg-yellow-300 hover:text-gray-950 w-[100px] h-[30px] rounded-xl text-gray-800 "
+              className="bg-yellow-400 btn hover:bg-yellow-300 hover:text-gray-950 w-[125px] h-[30px] rounded-xl text-gray-800 "
               onClick={() => {
                 addToCart({
                   _id,
@@ -34,9 +35,9 @@ function ProductInfo({ _id, name, description, images, price, category }) {
                 });
               }}
             >
-              Add to Cart
+             Add To Cart
             </button>
-            <button className="hover:bg-[#4CAF50] bg-green-600 rounded-xl w-[100px] hover:text-gray-950 text-gray-800">
+            <button className="hover:bg-[#4CAF50] btn bg-green-600 rounded-xl w-[100px] hover:text-gray-950 text-gray-800">
               Buy Now
             </button>
           </div>

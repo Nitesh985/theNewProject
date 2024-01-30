@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios'
+import axios from "axios";
 import Loader from "../utils/Loader";
 import useUserContext from "../context/UserContext";
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate } from "react-router-dom";
+import { IoHome } from "react-icons/io5";
 
 
 function SignIn() {
@@ -14,12 +14,12 @@ function SignIn() {
     password: "",
   });
 
-  const {setUserData} = useUserContext()
-  const navigate = useNavigate()
+  const { setUserData } = useUserContext();
+  const navigate = useNavigate();
 
-  const [response, setResponse] = useState(null)
-  const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const [userOrEmail, setUserOrEmail] = useState("email");
 
@@ -37,31 +37,29 @@ function SignIn() {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
-  
-      setError("")
-      setResponse("")
-      setLoading(true)
-  
-      const response = await axios.post('api/v1/users/sign-in', formData)
-      setResponse(response.data?.message)
-      const {data} = response.data
-      if (data){
-        setLoading(false)
-        setUserData(data)
-        navigate('/')
+
+      setError("");
+      setResponse("");
+      setLoading(true);
+
+      const response = await axios.post("api/v1/users/sign-in", formData);
+      setResponse(response.data?.message);
+      const { data } = response.data;
+      if (data) {
+        setLoading(false);
+        setUserData(data);
+        navigate("/");
       }
     } catch (error) {
-      setError(error?.response?.data?.message || error?.message)
-      setLoading(false)
+      setError(error?.response?.data?.message || error?.message);
+      setLoading(false);
     }
   };
-
-  
 
   return (
     <Loader loading={loading}>
       <div className="flex justify-center font-bold text-3xl">Sign In</div>
-      <div className="flex justify-center" >
+      <div className="flex justify-center">
         {response && <p className="text-green-500">{response}</p>}
         {error && <p className="text-red-500">{error}</p>}
       </div>
@@ -86,7 +84,8 @@ function SignIn() {
             placeholder={`Enter your ${userOrEmail}`}
             value={userOrEmail === "email" ? formData.email : formData.username}
             onChange={handleChange}
-            className="w-[300px] lg:w-[500px] indent-1 input input-bordered input-primary "
+            className="w-[300px] lg:w-[500px] indent-1 input input-bordered input-primary form-input-button "
+            required
           />
           <br />
           <label htmlFor="password">Password: </label>
@@ -95,9 +94,11 @@ function SignIn() {
             id="password"
             name="password"
             placeholder="Password"
+            minLength={8}
             value={formData.password}
             onChange={handleChange}
-            className="w-[300px] lg:w-[500px] indent-1 input input-bordered input-primary "
+            className="w-[300px] lg:w-[500px] indent-1 input input-bordered input-primary form-input-button "
+            required
           />
           <h1 className="mt-2">
             <Link
@@ -107,7 +108,7 @@ function SignIn() {
               Don't have an account?
             </Link>
           </h1>
-          <button className="btn mt-3">Submit</button>
+          <button className="form-submit-button mt-3">Submit</button>
         </form>
       </div>
     </Loader>
