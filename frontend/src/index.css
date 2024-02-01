@@ -2,18 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
-    .form-input-button{
-        @apply w-[300px] lg:w-[500px] indent-1 input input-bordered input-primary h-[50px] 
+@layer components {
+  .form-input-button {
+    @apply w-[300px] lg:w-[500px] indent-1 input input-bordered input-primary h-[50px] 
         transition-all duration-300 placeholder:opacity-60;
-    }
+  }
 
-    .form-select-button{
-        @apply select select-primary w-[300px] lg:w-[500px] indent-1 h-[50px] text-[15px];
-    }
+  .form-select-button {
+    @apply select select-primary w-[300px] lg:w-[500px] indent-1 h-[50px] text-[15px];
+  }
 
-    .form-submit-button{
-        @apply btn rounded-3xl hover:rounded-xl transition-all duration-300;
-    }
+  .form-submit-button {
+    @apply btn rounded-3xl hover:rounded-xl transition-all duration-300;
+  }
 }
 
+home-container {
+  font-family: "Arial", sans-serif;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+header {
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+h2,
+h3 {
+  color: rgb(255, 254, 254);
+  margin: 0;
+}
+
+p {
+  color: rgb(248, 248, 248);
+}
+.content {
+  margin-left: 6%;
+  max-width: 800px;
+  margin-top: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  background: radial-gradient(circle, #c4bfbf, #1a1e28);
+}
+
+.services {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.5em;
+  justify-content: space-evenly;
+
+  color: #fff;
+}
+svg {
+  display: flex;
+  flex-direction: column;
+}
+
+.h2 {
+  color: rgb(255, 254, 254);
+  margin: 17px 0px 0px 80px;
+  font-size: 1.5em;
+}

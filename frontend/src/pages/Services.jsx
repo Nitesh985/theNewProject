@@ -1,4 +1,4 @@
-
+import "../index.css";
 function Services() {
   return (
     <body>
@@ -6,33 +6,35 @@ function Services() {
         <h1>E-commerce Store</h1>
       </header>
 
-      <section class="services.content">
-        <h3>About Us</h3>
-        <p>
-          Welcome to our E-commerce Store, where your shopping experience meets
-          convenience and quality. We are passionate about providing you with a
-          diverse range of products that enhance your lifestyle.
-        </p>
+      <center>
+        <section class="content">
+          <h3>About Us</h3>
+          <p>
+            Welcome to our E-commerce Store, where your shopping experience
+            meets convenience and quality. We are passionate about providing you
+            with a diverse range of products that enhance your lifestyle.
+          </p>
+          <p>
+            Our E-commerce Store is an online shopping destination in Nepal
+            offering wide range of products at competitive prices! We focus on
+            quality products and fast delivery to give customers the best
+            shopping experience.Our journey began with a simple idea: to create
+            an online platform that caters to the needs of our customers while
+            prioritizing quality, affordability, and excellent customer service.
+            Over the years, we have evolved into a trusted destination for
+            online shopping, serving customers with a seamless and enjoyable
+            experience.
+          </p>
 
-        <p>
-          Our E-commerce Store is an online shopping destination in Nepal
-          offering wide range of products at competitive prices! We focus on
-          quality products and fast delivery to give customers the best shopping
-          experience.Our journey began with a simple idea: to create an online
-          platform that caters to the needs of our customers while prioritizing
-          quality, affordability, and excellent customer service. Over the
-          years, we have evolved into a trusted destination for online shopping,
-          serving customers with a seamless and enjoyable experience.
-        </p>
-
-        <h3>Our Mission</h3>
-        <p>
-          At Our E-commerce Store, our mission is to connect you with the
-          products you love, delivered with efficiency and care. We strive to
-          offer a curated selection of items that reflect the latest trends,
-          timeless classics, and everything in between.
-        </p>
-      </section>
+          <h3>Our Mission</h3>
+          <p>
+            At Our E-commerce Store, our mission is to connect you with the
+            products you love, delivered with efficiency and care. We strive to
+            offer a curated selection of items that reflect the latest trends,
+            timeless classics, and everything in between.
+          </p>
+        </section>
+      </center>
 
       <h2 class="h2">Our Services:</h2>
       <div class="services">
